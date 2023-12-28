@@ -1,0 +1,124 @@
+// -*- mode: json -*-
+
+{
+	"layer": "top",
+	"position": "top",
+	"height": 14,
+	"margin-left": 10,
+	"margin-right": 10,
+	"margin-top": 5,
+	
+	"modules-left": [
+		
+		"custom/launcher",
+		"hyprland/window"
+
+	],
+
+	"modules-center": [
+		
+		"hyprland/workspaces"
+	
+	],
+		
+	"modules-right": [
+	
+		"tray",
+		"pulseaudio",
+		"custom/notification",
+		"clock",
+		"custom/powermenu"
+				
+	],
+
+	"custom/powermenu": {
+		"format": " ",
+		"icon-size": 20,
+		"tooltip": false,
+		"on-click": "../rofi/powermenu/type-6/powermenu.sh",
+	},
+	
+	"custom/launcher": {
+		"format": "󰣇 ",
+		"icon-size": 20,
+		"tooltip": false,
+		"on-click": "../rofi/launchers/type-6/launcher.sh",
+	},
+	
+	"hyprland/workspaces" : {
+        "on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "format": "{}",
+        "format-icons": {
+			"urgent": "",
+			"active": "",
+			"default": ""
+        },
+        "persistent-workspaces": {
+             "*": 10
+        }       
+    },
+
+	"clock": {
+		"format": "{:%I:%M %p - %d/%m}",
+		"tooltip": true
+	},
+	
+	"pulseaudio": {
+		"format": "{icon} {volume}",
+		"format-bluetooth": "{icon}  ",
+		"format-muted": " 󰖁 ",
+		"format-icons": {
+			"headphones": " ",
+			"default": [
+				" ",
+				" ",
+				"󰕾 ",
+				" "
+			]
+		},
+		"scroll-step": 1,
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"on-click-right": "pavucontrol"
+	},
+
+	"tray": {
+		"icon-size": 16,
+		"spacing": 10
+		
+	},
+
+	"hyprland/window": {
+				"format": "{initialClass}",
+				"tooltip": true,
+				"rewrite": {
+            "firefox": "Mozilla Firefox",
+            "kitty": "Terminal",
+            "org.gnome.Nautilus": "Archivos",
+            "org.gnome.Software": "Tienda de Software",
+            "org.gnome.Music": "Reproductor de Música",
+        },
+        "separate-outputs": true
+    },
+
+	"custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " <span foreground='red'><sup></sup></span>",
+      "none": " ",
+      "dnd-notification": " <span foreground='red'><sup></sup></span>",
+      "dnd-none": " ",
+      "inhibited-notification": " <span foreground='red'><sup></sup></span>",
+      "inhibited-none": " ",
+      "dnd-inhibited-notification": " <span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": " "
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  }}
